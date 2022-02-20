@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
 
 * {
   box-sizing: border-box;
@@ -7,7 +7,7 @@
 }
 
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   height: 100vh;
 }
 
@@ -52,7 +52,8 @@ button:focus {
   outline: none;
 }
 
-.container .controls button {
+.container .controls button,
+.container .controls .link-download {
   position: absolute;
   left: 50%;
   top: 80%;
@@ -61,7 +62,7 @@ button:focus {
   transition: all 0.3s;
 }
 .container .controls button:hover {
-    opacity: 1;
+  opacity: 1;
 }
 
 .container .controls .down-button {
@@ -71,7 +72,11 @@ button:focus {
 }
 
 .container .controls .up-button {
-  /* transform: translateY(-100%); */
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
+}
+
+.container .controls .download-button {
+  transform: translateX(55px);
+  border-radius: 5px;
 }
