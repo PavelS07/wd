@@ -7,8 +7,7 @@ const placeImg = "https://dwg-master.ru/wd/i";
 
 let activeSlideIndex = 0;
 
-renderImg();
-const slidesCount = mainSlide.querySelectorAll("div").length;
+let slidesCount = 10;
 
 upBtn.addEventListener("click", () => {
   changeSlide("up");
@@ -34,30 +33,31 @@ function changeSlide(direction) {
   const height = container.clientHeight;
   mainSlide.style.transform = `translateY(-${activeSlideIndex * height}px)`;
   let imgNumberText = activeSlideIndex + 1 + "";
+  let startPoint = activeSlideIndex + 1;
   if (imgNumberText.length === 1) {
-    pathLink.href = `${placeImg}/00${activeSlideIndex + 1}.jpg`;
+    pathLink.href = `${placeImg}/00${startPoint}.jpg`;
   } else if (imgNumberText.length === 2) {
-    pathLink.href = `${placeImg}/0${activeSlideIndex + 1}.jpg`;
+    pathLink.href = `${placeImg}/0${startPoint}.jpg`;
   } else {
-    pathLink.href = `${placeImg}/${activeSlideIndex + 1}.jpg`;
+    pathLink.href = `${placeImg}/${startPoint}.jpg`;
+  }
+
+  if(startPoint%10 === 0) {
+    renderImg(startPoint+1);
+    slidesCount+=10;
   }
 }
-
-function renderImg() {
-  const mainCard = document.querySelector(".main-slide");
-  for (let i = 2; i < 210; i++) {
+function renderImg(startPoint) {
+  for (let i = startPoint; i < startPoint+10; i++) {
     const div = document.createElement("div");
     i += ""; // приводим к тексту
     if (i.length === 1) {
       div.style = `background-image: url('${placeImg}/00${i}.jpg')`;
-      div.id = `00${i}`;
     } else if (i.length === 2) {
       div.style = `background-image: url('${placeImg}/0${i}.jpg')`;
-      div.id = `0${i}`;
     } else {
       div.style = `background-image: url('${placeImg}/${i}.jpg')`;
-      div.id = `${i}`;
     }
-    mainCard.append(div);
+    mainSlide.append(div);
   }
 }
